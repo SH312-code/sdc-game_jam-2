@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://o3y6yf6pakmu"]
+
+[ext_resource type="Script" path="res://Hand.gd" id="1_6xi8r"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_gh2yt"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Hand" type="Node2D" parent="."]
+position = Vector2(1, 1)
+script = ExtResource("1_6xi8r")
+
+[node name="Sprite2D" type="Sprite2D" parent="Hand"]
+position = Vector2(35.25, 22.25)
+scale = Vector2(71.5, 45.5)
+texture = SubResource("CanvasTexture_gh2yt")
