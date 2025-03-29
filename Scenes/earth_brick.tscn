@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bokfvyl5tdpb6"]
+[gd_scene load_steps=5 format=3 uid="uid://bokfvyl5tdpb6"]
 
 [ext_resource type="Script" path="res://Scripts/earth_brick.gd" id="1_tly6q"]
 
@@ -6,6 +6,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6rgwt"]
 size = Vector2(51, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p10fr"]
+size = Vector2(56, 43)
 
 [node name="earth_brick" type="Node2D"]
 script = ExtResource("1_tly6q")
@@ -21,3 +24,9 @@ texture = SubResource("CanvasTexture_pj55d")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D"]
 position = Vector2(25, 19)
 shape = SubResource("RectangleShape2D_6rgwt")
+
+[node name="Area2D_earth" type="Area2D" parent="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Area2D_earth"]
+position = Vector2(26, 19.5)
+shape = SubResource("RectangleShape2D_p10fr")
