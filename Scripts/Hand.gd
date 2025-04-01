@@ -1,14 +1,16 @@
 extends Node2D
 
-var speed = 250
+const speed = 250
 var direction = 1
-var health = 10
+var health = 25
+const max_health = 25
 var regex = RegEx.new()
 var old_areas = []
 signal health_changed
 var can_shoot = true
 var left = false
 var right = false
+signal game_lost
 #This gets the sprites that are not in the scene 
 @onready var block = preload("res://Scenes/earth_brick.tscn")
 @onready var fire_block = preload("res://Scenes/fire_brick.tscn")
@@ -23,9 +25,10 @@ func _process(delta): #This makes the back and forth motion. The speed is multip
 	elif left and position.x > 0:
 		position.x -= speed *delta
 
-	if health <= 0:
+	if health <= 0: # when dead a signal is relased and used somewhere else
+		game_lost.emit()
 		queue_free()
-	for i in $Area2D.get_overlapping_areas():
+	for i in $Area2D.get_overlapping_areas(): # Checks for collison 
 		if regex.search(str(i)) and i not in old_areas:
 			health -= 1
 			health_changed.emit()
@@ -37,7 +40,7 @@ func spawn(item:Object): # This first instantiates an object (creates a version 
 	get_tree().current_scene.add_child(hold)
 	
 func _input(event): #This is used for player input and is as of 3/29/2025 being used to spwan eneimes
-	if event.is_action_pressed("Space_key") and can_shoot:
+	if event.is_action_pressed("Space_key") and can_shoot: # Launches bricks
 		var enemy = randi_range(0,2)
 		can_shoot = false
 		if enemy == 0: spawn(block)

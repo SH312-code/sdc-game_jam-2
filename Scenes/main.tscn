@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://o3y6yf6pakmu"]
+[gd_scene load_steps=9 format=3 uid="uid://o3y6yf6pakmu"]
 
 [ext_resource type="Script" path="res://Scripts/Hand.gd" id="1_mksxx"]
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_uftu3"]
 [ext_resource type="Texture2D" uid="uid://bywux8nk4hdlf" path="res://Sprites/red_health_bar.png" id="2_2jvgg"]
 [ext_resource type="Texture2D" uid="uid://ddku3f42frbq" path="res://Sprites/green_health_bar.png" id="3_ks44b"]
 [ext_resource type="Script" path="res://Scripts/texture_progress_bar.gd" id="4_5473x"]
@@ -8,28 +9,30 @@
 [sub_resource type="CanvasTexture" id="CanvasTexture_gh2yt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wqork"]
-size = Vector2(72, 46)
+size = Vector2(26, 46)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bdr70"]
 size = Vector2(498.875, 33)
 
 [node name="Main" type="Node2D"]
 position = Vector2(0, 18)
+script = ExtResource("1_uftu3")
 
 [node name="Hand" type="Node2D" parent="."]
 position = Vector2(1, 1)
 script = ExtResource("1_mksxx")
 
 [node name="Sprite2D" type="Sprite2D" parent="Hand"]
-position = Vector2(35.25, 22.25)
-scale = Vector2(71.5, 45.5)
+position = Vector2(31, 22.25)
+scale = Vector2(26, 45.5)
 texture = SubResource("CanvasTexture_gh2yt")
 
 [node name="Area2D" type="Area2D" parent="Hand"]
 position = Vector2(1, 1)
+collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/Area2D"]
-position = Vector2(35, 22)
+position = Vector2(30, 21)
 shape = SubResource("RectangleShape2D_wqork")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Hand"]
@@ -48,8 +51,25 @@ metadata/_edit_use_anchors_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(225, 595)
+collision_layer = 16
+collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(24.5625, 36)
+position = Vector2(25, 45)
 shape = SubResource("RectangleShape2D_bdr70")
 one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="StaticBody2D"]
+collision_layer = 16
+collision_mask = 10
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D/Area2D"]
+position = Vector2(25, 45)
+shape = SubResource("RectangleShape2D_bdr70")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 331.0
+offset_top = 8.0
+offset_right = 371.0
+offset_bottom = 31.0
+text = "Score : 0"

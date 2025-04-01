@@ -8,4 +8,4 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func update():
-	value = (Hand.health * 100)/10
+	value = (Hand.health * 100)/Hand.max_health

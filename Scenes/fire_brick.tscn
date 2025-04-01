@@ -5,7 +5,7 @@
 [sub_resource type="CanvasTexture" id="CanvasTexture_j528i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t2b3s"]
-size = Vector2(48.5, 30.5)
+size = Vector2(51, 25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5dyjf"]
 size = Vector2(57, 35)
@@ -14,18 +14,22 @@ size = Vector2(57, 35)
 script = ExtResource("1_jf1ws")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
+collision_layer = 2
+collision_mask = 26
 lock_rotation = true
 
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
-position = Vector2(24.75, 13.25)
-scale = Vector2(50.5, 27.5)
+position = Vector2(25.5, 12.5)
+scale = Vector2(51, 25)
 texture = SubResource("CanvasTexture_j528i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(24.75, 13.75)
+position = Vector2(25.5, 12.5)
 shape = SubResource("RectangleShape2D_t2b3s")
 
 [node name="Area2D_fire" type="Area2D" parent="RigidBody2D"]
+collision_layer = 2
+collision_mask = 26
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Area2D_fire"]
 position = Vector2(25.5, 13.5)
