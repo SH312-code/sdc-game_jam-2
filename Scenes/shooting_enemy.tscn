@@ -5,10 +5,10 @@
 [sub_resource type="CanvasTexture" id="CanvasTexture_xqgom"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_428wb"]
-size = Vector2(1.14516, 0.155556)
+size = Vector2(1.14516, 0.044445)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gxbq7"]
-size = Vector2(71, 83)
+size = Vector2(162, 93)
 
 [node name="Shooting enemy" type="Node2D"]
 script = ExtResource("1_u560d")
@@ -25,7 +25,7 @@ collision_layer = 8
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_for_damage"]
-position = Vector2(0.00806445, -0.466667)
+position = Vector2(0.00806445, -0.522222)
 shape = SubResource("RectangleShape2D_428wb")
 
 [node name="Area2D2" type="Area2D" parent="."]
@@ -33,5 +33,5 @@ collision_layer = 8
 collision_mask = 18
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
-position = Vector2(31.5, 51.5)
+position = Vector2(34, 46.5)
 shape = SubResource("RectangleShape2D_gxbq7")

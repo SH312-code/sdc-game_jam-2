@@ -12,7 +12,7 @@ func _process(delta): # The way collions work is by looping throgh a list of eve
 		if regex.search(str(i)):
 			#await get_tree().create_timer(.5).timeout# The reason for this is if we want to add a breaking animnation
 			queue_free()
-	if dt > 10:
+	if dt > 4:
 		queue_free()
 func set_x_y(x: float , y: float): #Called in diffrent node for spwaning at hand sprite
 	position.x = x

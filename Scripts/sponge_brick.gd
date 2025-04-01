@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 		if regex.search(str(i)) and i not in old_areas:
 			durribilty -= 1
 			old_areas.append(i)
-	if durribilty <= 0 or dt > 10:
+	if durribilty <= 0 or dt > 4:
 		#await get_tree().create_timer(.5).timeout # The reason for this is if we want to add a breaking animnation
 		queue_free()
 func set_x_y(x: float , y: float): #Called in diffrent node for spwaning at hand sprite

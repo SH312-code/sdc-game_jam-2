@@ -1,5 +1,7 @@
 extends Node2D
 var direction = 1 
+var shoot_delay = randf_range(.5, 2)
+var speed = randi_range(150, 350)
 @onready var bullet = preload("res://Scenes/bullet.tscn")
 var dt =0 #timer
 var regex = RegEx.new() # check string
@@ -8,15 +10,14 @@ signal died
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	modulate = Color(0,0,255) 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	dt += delta
-	position.x += 250 *delta*direction # moves the sprite
+	position.x += speed *delta*direction # moves the sprite
 	if position.x > 500 or position.x < 0: # checks if out of bounds
 		direction *= -1 # changes direction if out of bounds
-	if dt > 1: #spawns bullet every second
-		dt -= 1
+	if dt > shoot_delay: #spawns bullet every second
+		dt -= shoot_delay
 		var hold = bullet.instantiate()
 		hold.set_x_y(position.x, position.y) 
 		get_tree().current_scene.add_child(hold) 
@@ -29,3 +30,5 @@ func _process(delta: float) -> void:
 		position.y += 1
 func set_x_y(x: float, y: float):
 	position = Vector2(x,y)
+func kill():
+	queue_free()

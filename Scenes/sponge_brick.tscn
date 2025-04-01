@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsxesx7pwx3wa"]
+[gd_scene load_steps=6 format=3 uid="uid://dsxesx7pwx3wa"]
 
 [ext_resource type="Texture2D" uid="uid://b0c0d2t4ka87a" path="res://Sprites/sponge brick.png" id="1_02ypv"]
 [ext_resource type="Script" path="res://Scripts/sponge_brick.gd" id="1_pownf"]
+[ext_resource type="Script" path="res://Scripts/rigid_body_2d.gd" id="2_ss6ir"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gi3dg"]
 size = Vector2(44, 25)
@@ -16,6 +17,7 @@ script = ExtResource("1_pownf")
 collision_layer = 2
 collision_mask = 26
 lock_rotation = true
+script = ExtResource("2_ss6ir")
 
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
 texture_filter = 1

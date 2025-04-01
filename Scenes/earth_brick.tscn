@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bokfvyl5tdpb6"]
+[gd_scene load_steps=6 format=3 uid="uid://bokfvyl5tdpb6"]
 
 [ext_resource type="Script" path="res://Scripts/earth_brick.gd" id="1_tly6q"]
+[ext_resource type="Script" path="res://Scripts/rigid_body_2d.gd" id="2_o6n4p"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_pj55d"]
 
@@ -17,6 +18,7 @@ script = ExtResource("1_tly6q")
 collision_layer = 2
 collision_mask = 26
 lock_rotation = true
+script = ExtResource("2_o6n4p")
 
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
 position = Vector2(25.5, 12.5)

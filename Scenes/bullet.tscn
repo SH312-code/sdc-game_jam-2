@@ -1,23 +1,23 @@
 [gd_scene load_steps=4 format=3 uid="uid://cx6exrnqcpfev"]
 
 [ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_tmsyq"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_kjcfm"]
+[ext_resource type="Texture2D" uid="uid://co7eexcvbavgu" path="res://Sprites/Good_bullet_for_player.png" id="2_w7wax"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iai13"]
-size = Vector2(12, 12)
+size = Vector2(11, 12)
 
 [node name="bullet" type="Node2D"]
 script = ExtResource("1_tmsyq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(6, 6)
-scale = Vector2(12, 12)
-texture = SubResource("CanvasTexture_kjcfm")
+scale = Vector2(0.210937, 0.203125)
+texture = ExtResource("2_w7wax")
 
 [node name="Area2D_of_bullet" type="Area2D" parent="."]
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_of_bullet"]
-position = Vector2(6, 6)
+position = Vector2(5.5, 6)
 shape = SubResource("RectangleShape2D_iai13")

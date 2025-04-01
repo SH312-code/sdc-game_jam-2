@@ -18,6 +18,12 @@ size = Vector2(498.875, 33)
 position = Vector2(0, 18)
 script = ExtResource("1_uftu3")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_top = -17.0
+offset_right = 497.0
+offset_bottom = 656.0
+expand_mode = 1
+
 [node name="Hand" type="Node2D" parent="."]
 position = Vector2(1, 1)
 script = ExtResource("1_mksxx")
@@ -72,4 +78,5 @@ offset_left = 331.0
 offset_top = 8.0
 offset_right = 371.0
 offset_bottom = 31.0
+theme_override_font_sizes/font_size = 19
 text = "Score : 0"
