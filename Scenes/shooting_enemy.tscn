@@ -26,7 +26,6 @@ collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_for_damage"]
 position = Vector2(0.00806445, -0.466667)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_428wb")
 
 [node name="Area2D2" type="Area2D" parent="."]

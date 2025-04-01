@@ -1,6 +1,6 @@
 extends Node2D
 var score = 0
-var max_enemy = 10
+var max_enemy = 6
 @onready var enemy = preload("res://Scenes/shooting_enemy.tscn")
 var dt = 0
 var game = true
@@ -14,7 +14,6 @@ func _process(delta: float) -> void:
 	#print(get_child_count(false))
 	if dt > 1 and game and get_child_count(false) < max_enemy: # This is to prevent 30 enemys on the field in the begining, diffictlty climbs with experince and also bricks count as childeren
 		dt -= 1
-		max_enemy += 1
 		#spawn new enemy
 		var hold = enemy.instantiate()
 		hold.died.connect(update_score)
@@ -27,6 +26,7 @@ func _process(delta: float) -> void:
 func update_score():
 	#print("Changed") # https://docs.godotengine.org/en/stable/getting_started/first_2d_game/06.heads_up_display.html
 	score += 1
+	max_enemy += 1
 	$Label.text = "Score: " + str(score)
 func end(): # I can't figure out if Godot has lambda so I just made a function to call
 	game = false

@@ -7,9 +7,9 @@ const max_health = 25
 var regex = RegEx.new()
 var old_areas = []
 signal health_changed
-var can_shoot = true
-var left = false
-var right = false
+var can_shoot: bool = true
+var left: bool = false
+var right: bool = false
 signal game_lost
 #This gets the sprites that are not in the scene 
 @onready var block = preload("res://Scenes/earth_brick.tscn")
