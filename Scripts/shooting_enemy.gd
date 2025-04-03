@@ -22,13 +22,15 @@ func _process(delta: float) -> void:
 		hold.set_x_y(position.x, position.y) 
 		get_tree().current_scene.add_child(hold) 
 	#When climbing they take no damage other wise they are vunerable. This makes the fire brick useful for stratgies 
-	if len($Area2D2.get_overlapping_areas()) != 0: # this allows the bricks to climb
+	var contacts = [len($Area2D2.get_overlapping_areas()) != 0, len($Area2D_for_damage.get_overlapping_areas()) > 0]
+	match contacts:
+		[true, _]:
 			position.y -= 1
-	else: # prevents them standing on air
-		position.y += 1
-		if len($Area2D_for_damage.get_overlapping_areas()) > 0: #checks for collions The reason it is here is to prevent the same brick they climb from killing them
+		[false,true]:
 			died.emit()
 			queue_free()
+		[false,false]:
+			position.y += 1
 func set_x_y(x: float, y: float):
 	position = Vector2(x,y)
 func kill():

@@ -2,14 +2,13 @@
 
 [ext_resource type="Script" path="res://Scripts/earth_brick.gd" id="1_tly6q"]
 [ext_resource type="Script" path="res://Scripts/rigid_body_2d.gd" id="2_o6n4p"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_pj55d"]
+[ext_resource type="Texture2D" uid="uid://c5vrs0m734pmy" path="res://Sprites/Earth_brick.png" id="3_k4xl3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6rgwt"]
-size = Vector2(51, 25)
+size = Vector2(44, 25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p10fr"]
-size = Vector2(56, 29)
+size = Vector2(49, 29)
 
 [node name="earth_brick" type="Node2D"]
 script = ExtResource("1_tly6q")
@@ -21,12 +20,12 @@ lock_rotation = true
 script = ExtResource("2_o6n4p")
 
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
-position = Vector2(25.5, 12.5)
-scale = Vector2(51, 25)
-texture = SubResource("CanvasTexture_pj55d")
+texture_filter = 1
+position = Vector2(22, 12.5)
+texture = ExtResource("3_k4xl3")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(25.5, 12.5)
+position = Vector2(22, 12.5)
 shape = SubResource("RectangleShape2D_6rgwt")
 
 [node name="Area2D_earth" type="Area2D" parent="RigidBody2D"]
@@ -34,5 +33,5 @@ collision_layer = 2
 collision_mask = 26
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Area2D_earth"]
-position = Vector2(26, 12.5)
+position = Vector2(22.5, 12.5)
 shape = SubResource("RectangleShape2D_p10fr")

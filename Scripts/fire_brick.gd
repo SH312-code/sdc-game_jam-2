@@ -1,7 +1,7 @@
 extends Node2D
 var dt =0
 func _ready() -> void:
-	modulate = Color(255,0,0) # Changes color to red
+	pass
 func _process(delta: float) -> void:
 	dt += delta
 	if dt > 2.5:

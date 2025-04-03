@@ -2,7 +2,6 @@ extends Node2D
 var regex = RegEx.new()	 #https://docs.godotengine.org/en/stable/classes/class_regex.html
 var dt = 0
 func _ready():
-	modulate = Color(0,255,0) 
 	#https://docs.godotengine.org/en/stable/classes/class_regex.html
 	regex.compile("^Area2D_fire")#This is a regular exprsion used for string lookups. The ^ means to start maching characters at the begining of a string. It then checks if the first part of the string matches the criteria. In this case that criteria is the first part of the string is "Area2D_fire". The last part of the string can be anything. This is faster then looping throgh a list of every character in the string
 

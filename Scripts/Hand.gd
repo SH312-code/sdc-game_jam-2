@@ -11,13 +11,26 @@ var can_shoot: bool = true
 var left: bool = false
 var right: bool = false
 var stop_standing = 0
+var next_enemy = randi_range(1,100)
 signal game_lost
 #This gets the sprites that are not in the scene 
 @onready var block = preload("res://Scenes/earth_brick.tscn")
 @onready var fire_block = preload("res://Scenes/fire_brick.tscn")
 @onready var sponge_block = preload("res://Scenes/sponge_brick.tscn")
 func _ready():
-	regex.compile("^Area2D_of_bullet") # Replace with function body.
+	regex.compile("^Area2D_of_bullet")
+	if next_enemy > 20: 
+		$earth.visible = true
+		$fire.visible = false
+		$sponge.visible = false
+	elif next_enemy <= 20 and next_enemy > 10: 
+		$earth.visible = false
+		$fire.visible = true
+		$sponge.visible = false
+	else: 
+		$earth.visible = false
+		$fire.visible = false
+		$sponge.visible = true # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta): #This makes the back and forth motion. The speed is multiplied by delta for consitency across diffrent computers.
@@ -41,11 +54,25 @@ func spawn(item:Object): # This first instantiates an object (creates a version 
 	
 func _input(event): #This is used for player input and is as of 3/29/2025 being used to spwan eneimes
 	if event.is_action_pressed("Space_key") and can_shoot: # Launches bricks
-		var enemy = randi_range(0,2)
+		var enemy = next_enemy
+		next_enemy = randi_range(1,100)
 		can_shoot = false
-		if enemy == 0: spawn(block)
-		if enemy == 1: spawn(fire_block)
-		if enemy == 2: spawn(sponge_block)
+		if enemy > 20: spawn(block)
+		elif enemy <= 20 and enemy > 10: spawn(fire_block)
+		else: spawn(sponge_block)
+		if next_enemy > 20: 
+			$earth.visible = true
+			$fire.visible = false
+			$sponge.visible = false
+		elif next_enemy <= 20 and next_enemy > 10: 
+			$earth.visible = false
+			$fire.visible = true
+			$sponge.visible = false
+		else: 
+			$earth.visible = false
+			$fire.visible = false
+			$sponge.visible = true
+		
 		await get_tree().create_timer(.5).timeout
 		can_shoot = true
 	if event.is_action_pressed("ui_left") and position.x > 10:
