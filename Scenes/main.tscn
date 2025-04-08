@@ -1,0 +1,109 @@
+[gd_scene load_steps=13 format=3 uid="uid://o3y6yf6pakmu"]
+
+[ext_resource type="Script" path="res://Scripts/Hand.gd" id="1_mksxx"]
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_uftu3"]
+[ext_resource type="Texture2D" uid="uid://bywux8nk4hdlf" path="res://Sprites/red_health_bar.png" id="2_2jvgg"]
+[ext_resource type="Texture2D" uid="uid://bk48jg1vwult6" path="res://Sprites/player.png" id="3_52nsg"]
+[ext_resource type="Texture2D" uid="uid://ddku3f42frbq" path="res://Sprites/green_health_bar.png" id="3_ks44b"]
+[ext_resource type="Script" path="res://Scripts/texture_progress_bar.gd" id="4_5473x"]
+[ext_resource type="Texture2D" uid="uid://c5vrs0m734pmy" path="res://Sprites/Earth_brick.png" id="4_m4ioc"]
+[ext_resource type="Texture2D" uid="uid://crr8lu3v7b8cp" path="res://Sprites/fire_brick.png" id="5_ve41k"]
+[ext_resource type="Texture2D" uid="uid://b0c0d2t4ka87a" path="res://Sprites/sponge brick.png" id="6_636hx"]
+[ext_resource type="PackedScene" uid="uid://ba1ijuuhofy8q" path="res://Scenes/hostile/shooting_enemy_variant.tscn" id="10_s5r7x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqork"]
+size = Vector2(26, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bdr70"]
+size = Vector2(498.875, 33)
+
+[node name="Main" type="Node2D"]
+position = Vector2(0, 18)
+script = ExtResource("1_uftu3")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_top = -19.0
+offset_right = 497.0
+offset_bottom = 654.0
+expand_mode = 1
+
+[node name="Hand" type="Node2D" parent="."]
+position = Vector2(0, 1)
+script = ExtResource("1_mksxx")
+
+[node name="Sprite2D" type="Sprite2D" parent="Hand"]
+texture_filter = 1
+position = Vector2(31, 22)
+scale = Vector2(0.25, 0.239583)
+texture = ExtResource("3_52nsg")
+
+[node name="earth" type="Sprite2D" parent="Hand"]
+texture_filter = 1
+position = Vector2(31, 9.875)
+scale = Vector2(0.5, 0.71)
+texture = ExtResource("4_m4ioc")
+
+[node name="fire" type="Sprite2D" parent="Hand"]
+texture_filter = 1
+position = Vector2(31, 9.75)
+scale = Vector2(0.5, 0.7)
+texture = ExtResource("5_ve41k")
+
+[node name="sponge" type="Sprite2D" parent="Hand"]
+visible = false
+texture_filter = 1
+position = Vector2(31, 9.5)
+scale = Vector2(0.34375, 0.425)
+texture = ExtResource("6_636hx")
+
+[node name="Area2D" type="Area2D" parent="Hand"]
+position = Vector2(1, 1)
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/Area2D"]
+visible = false
+position = Vector2(30, 21)
+shape = SubResource("RectangleShape2D_wqork")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Hand"]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Hand/CanvasLayer"]
+offset_left = 4.0
+offset_top = -15.0
+offset_right = 66.0
+offset_bottom = -6.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_2jvgg")
+texture_progress = ExtResource("3_ks44b")
+script = ExtResource("4_5473x")
+metadata/_edit_use_anchors_ = true
+
+[node name="FloorStaticBody" type="StaticBody2D" parent="."]
+position = Vector2(225, 595)
+collision_layer = 16
+collision_mask = 10
+
+[node name="FloorStaticBodyCollisionShape" type="CollisionShape2D" parent="FloorStaticBody"]
+position = Vector2(25, 45)
+shape = SubResource("RectangleShape2D_bdr70")
+one_way_collision = true
+
+[node name="FloorArea2D" type="Area2D" parent="FloorStaticBody"]
+collision_layer = 16
+collision_mask = 10
+
+[node name="FloorArea2DCollisionShape" type="CollisionShape2D" parent="FloorStaticBody/FloorArea2D"]
+position = Vector2(25, 45)
+shape = SubResource("RectangleShape2D_bdr70")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 331.0
+offset_top = 8.0
+offset_right = 371.0
+offset_bottom = 31.0
+theme_override_font_sizes/font_size = 19
+text = "Score : 0"
+
+[node name="ShootingEnemyVariant" parent="." instance=ExtResource("10_s5r7x")]
+position = Vector2(83, 532)

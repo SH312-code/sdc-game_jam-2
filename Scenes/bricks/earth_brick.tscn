@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://bokfvyl5tdpb6"]
+
+[ext_resource type="Script" path="res://Scripts/bricks/base_brick.gd" id="1_md1ja"]
+[ext_resource type="Script" path="res://Scripts/rigid_body_2d.gd" id="2_q1nsf"]
+[ext_resource type="Texture2D" uid="uid://c5vrs0m734pmy" path="res://Sprites/Earth_brick.png" id="3_wwwse"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6rgwt"]
+size = Vector2(44, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p10fr"]
+size = Vector2(46, 29)
+
+[node name="earth_brick" type="Node2D"]
+script = ExtResource("1_md1ja")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+collision_layer = 2
+collision_mask = 26
+lock_rotation = true
+script = ExtResource("2_q1nsf")
+
+[node name="earthsprite" type="Sprite2D" parent="RigidBody2D"]
+texture_filter = 1
+position = Vector2(22, 12.5)
+texture = ExtResource("3_wwwse")
+
+[node name="collionshapeforrigidbody" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(22, 12.5)
+shape = SubResource("RectangleShape2D_6rgwt")
+
+[node name="brick_floor_dectection" type="Area2D" parent="RigidBody2D"]
+collision_layer = 2
+collision_mask = 18
+
+[node name="brickandfloordetection" type="CollisionShape2D" parent="RigidBody2D/brick_floor_dectection"]
+position = Vector2(22, 12.5)
+shape = SubResource("RectangleShape2D_p10fr")

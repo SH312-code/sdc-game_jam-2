@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba1ijuuhofy8q"]
+
+[ext_resource type="Script" path="res://Scripts/hostile/shooting_enemy_variant.gd" id="1_cuose"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_4osfh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vljn4"]
+size = Vector2(66, 94)
+
+[node name="ShootingEnemyVariant" type="Node2D"]
+script = ExtResource("1_cuose")
+
+[node name="EnemyPlaceholderSprite" type="Sprite2D" parent="."]
+position = Vector2(31, 45)
+scale = Vector2(62, 90)
+texture = SubResource("CanvasTexture_4osfh")
+
+[node name="EnemyArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="EnemyCollisionShape" type="CollisionShape2D" parent="EnemyArea"]
+position = Vector2(31, 45)
+shape = SubResource("RectangleShape2D_vljn4")
+
+[connection signal="area_entered" from="EnemyArea" to="." method="_on_enemy_area_area_entered"]
