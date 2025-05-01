@@ -24,12 +24,18 @@ func _ready():
 	# Replace with function body.
 
 func next_brick_display():
-	if next_brick > 20: 
+	if next_brick > 30: 
 		$earth.visible = true
 		$fire.visible = false
+		$sponge.visible = false
+	elif next_brick > 10:
+		$earth.visible = false
+		$fire.visible = false
+		$sponge.visible = true
 	else:
 		$earth.visible = false
 		$fire.visible = true
+		$sponge.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -50,7 +56,6 @@ func _process(delta): #This makes the back and forth motion. The speed is multip
 func spawn(item:Object): # This first instantiates an object (creates a version of it in memory). After it sets the objects x position to the x position of this sprite then finally adds the block to the main scene 
 	var hold = item.instantiate()
 	hold.position.x = position.x + 11 
-	print(get_child(1).texture.get_width())
 	get_tree().current_scene.add_child(hold)
 	
 func _input(event): #This is used for player input and is as of 3/29/2025 being used to spwan eneimes
@@ -58,7 +63,8 @@ func _input(event): #This is used for player input and is as of 3/29/2025 being 
 		var current_brick = next_brick
 		next_brick = randi_range(0,100)
 		can_shoot = false
-		if current_brick > 20: spawn(sponge_brick)
+		if current_brick > 30: spawn(block)
+		elif current_brick > 10: spawn(sponge_brick)
 		else: spawn(fire_block)
 		next_brick_display()
 		

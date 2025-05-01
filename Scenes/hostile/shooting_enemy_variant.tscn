@@ -14,6 +14,7 @@ script = ExtResource("1_cuose")
 position = Vector2(31, 45)
 scale = Vector2(62, 90)
 texture = SubResource("CanvasTexture_4osfh")
+metadata/height = 90
 
 [node name="EnemyArea" type="Area2D" parent="."]
 collision_layer = 8

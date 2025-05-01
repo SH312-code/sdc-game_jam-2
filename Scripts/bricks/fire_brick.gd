@@ -13,7 +13,7 @@ func _ready() -> void:
 	type = 'fire'
 	collision_behavior = func():
 		for overlapped_area in $RigidBody2D.get_child(2).get_overlapping_areas():
-			if searching_for_brick.search(str(overlapped_area)):
+			if GlobalVariables.SEARCHING_FOR_BRICK.search(str(overlapped_area)):
 				var overlapped_brick = overlapped_area.get_parent().get_parent()
 				if overlapped_brick.type == 'sponge':
 					overlapped_brick.decrease_hits()

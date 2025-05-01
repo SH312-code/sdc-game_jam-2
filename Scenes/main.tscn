@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://o3y6yf6pakmu"]
+[gd_scene load_steps=12 format=3 uid="uid://o3y6yf6pakmu"]
 
 [ext_resource type="Script" path="res://Scripts/Hand.gd" id="1_mksxx"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_uftu3"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://c5vrs0m734pmy" path="res://Sprites/Earth_brick.png" id="4_m4ioc"]
 [ext_resource type="Texture2D" uid="uid://crr8lu3v7b8cp" path="res://Sprites/fire_brick.png" id="5_ve41k"]
 [ext_resource type="Texture2D" uid="uid://b0c0d2t4ka87a" path="res://Sprites/sponge brick.png" id="6_636hx"]
-[ext_resource type="PackedScene" uid="uid://ba1ijuuhofy8q" path="res://Scenes/hostile/shooting_enemy_variant.tscn" id="10_s5r7x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wqork"]
 size = Vector2(26, 46)
@@ -80,21 +79,21 @@ script = ExtResource("4_5473x")
 metadata/_edit_use_anchors_ = true
 
 [node name="FloorStaticBody" type="StaticBody2D" parent="."]
-position = Vector2(225, 595)
+position = Vector2(249, 596)
 collision_layer = 16
 collision_mask = 10
 
 [node name="FloorStaticBodyCollisionShape" type="CollisionShape2D" parent="FloorStaticBody"]
-position = Vector2(25, 45)
+position = Vector2(0, 16.5)
 shape = SubResource("RectangleShape2D_bdr70")
 one_way_collision = true
 
 [node name="FloorArea2D" type="Area2D" parent="FloorStaticBody"]
+position = Vector2(0, 16.5)
 collision_layer = 16
 collision_mask = 10
 
 [node name="FloorArea2DCollisionShape" type="CollisionShape2D" parent="FloorStaticBody/FloorArea2D"]
-position = Vector2(25, 45)
 shape = SubResource("RectangleShape2D_bdr70")
 
 [node name="Label" type="Label" parent="."]
@@ -104,6 +103,3 @@ offset_right = 371.0
 offset_bottom = 31.0
 theme_override_font_sizes/font_size = 19
 text = "Score : 0"
-
-[node name="ShootingEnemyVariant" parent="." instance=ExtResource("10_s5r7x")]
-position = Vector2(83, 532)
