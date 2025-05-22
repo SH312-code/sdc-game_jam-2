@@ -15,7 +15,6 @@ func _ready(): # changes color of canvas texture
 	var r = randf_range(0, 1)
 	var g = randf_range(0, 1)
 	var b = randf_range(0, 1)
-	print(r," does ", g, " thre ", b)
 	modulate = Color(r, g, b)
 	
 
@@ -27,9 +26,7 @@ func _process(delta):
 		killable = true
 	if dt > 0.01 and not spawned:
 		spawned = true
-		print($EnemyArea.get_overlapping_areas())
 		for area_colliding in $EnemyArea.get_overlapping_areas():
-			print(area_colliding)
 			if GlobalVariables.SEARCHING_FOR_BRICK.search(str(area_colliding)):
 				area_colliding.get_parent().get_parent().destroy()
 	var movement_amount = delta * speed * direction
@@ -38,8 +35,11 @@ func _process(delta):
 	else:
 		position.x += movement_amount
 	can_rotate = true
-
-
+	if dt > shoot_delay: #spawns bullet every second
+		dt -= shoot_delay
+		var hold = bullet.instantiate()
+		hold.set_x_y(position.x, position.y) 
+		get_tree().current_scene.add_child(hold) 
 
 func _on_enemy_area_area_entered(area):
 	var parent_area = area.get_parent().get_parent()

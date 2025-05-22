@@ -13,3 +13,9 @@ func _process(delta: float) -> void:
 		queue_free()
 func set_x_y(x: float, y: float):
 	position = Vector2(x,y)
+	
+
+
+func _on_area_2d_of_bullet_area_entered(area: Area2D): # Replace with function body.
+	if GlobalVariables.SEARCHING_FOR_BRICK.search(str(area)):
+		queue_free()

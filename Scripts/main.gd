@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 		#spawn new enemy
 		var hold = enemy.instantiate()
 		hold.died.connect(update_score)
-		hold.position = Vector2(randi_range(6, 500), get_child(2).position.y - hold.get_child(0).get_meta("height", -999))
+		hold.position = Vector2(randi_range(0,440), get_child(2).position.y - hold.get_child(0).get_meta("height", -999))
 		get_tree().current_scene.add_child(hold)
 	if !game:
 		for i in get_children():

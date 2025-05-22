@@ -16,8 +16,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	
+func _process(_delta: float) -> void:
 		for overlapped_area in $RigidBody2D.get_child(2).get_overlapping_areas():
 			if falling:
 				if GlobalVariables.SEARCHING_FOR_BRICK.search(str(overlapped_area)):
