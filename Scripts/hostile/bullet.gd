@@ -18,4 +18,7 @@ func set_x_y(x: float, y: float):
 
 func _on_area_2d_of_bullet_area_entered(area: Area2D): # Replace with function body.
 	if GlobalVariables.SEARCHING_FOR_BRICK.search(str(area)):
+		var brick = area.get_parent().get_parent()
+		if !brick.falling:
+			brick.shot()
 		queue_free()

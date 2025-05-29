@@ -8,7 +8,6 @@ var existing_enemies = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void: # Replace with function body.
 	$Hand.game_lost.connect(end) # This connects the signal that is emited to an action, the end function
-	$TextureRect.texture = load("res://Sprites/game.png")
 	$Label.add_theme_font_size_override("font_size", 19) 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,7 +26,7 @@ func _process(delta: float) -> void:
 			if i != $TextureRect and i != $Label:
 				i.queue_free()
 		$TextureRect.texture = load("res://Sprites/game_over.png")
-		$Label.global_position = Vector2(200, 440)
+		$Label.global_position = Vector2(170, 340)
 		$Label.add_theme_font_size_override("font_size", 30)
 	
 func update_score(): # https://docs.godotengine.org/en/stable/getting_started/first_2d_game/06.heads_up_display.html

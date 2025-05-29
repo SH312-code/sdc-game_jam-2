@@ -2,8 +2,8 @@ extends Node2D
 
 const speed = 250
 var direction = 1
-var health = 25
-const max_health = 25
+var health = 1
+const max_health = 1
 var bullet_detection = RegEx.new()
 var can_shoot: bool = true
 var left: bool = false
@@ -67,7 +67,6 @@ func _input(event): #This is used for player input and is as of 3/29/2025 being 
 		elif current_brick > 10: spawn(sponge_brick)
 		else: spawn(fire_block)
 		next_brick_display()
-		
 		await get_tree().create_timer(.5).timeout
 		can_shoot = true
 	if event.is_action_pressed("ui_left") and position.x > 10:

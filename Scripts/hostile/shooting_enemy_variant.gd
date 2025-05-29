@@ -32,6 +32,11 @@ func _process(delta):
 	var movement_amount = delta * speed * direction
 	if movement_amount + position.x > GlobalVariables.RIGHT_BOUND or movement_amount + position.x < GlobalVariables.LEFT_BOUND:
 		direction *= -1
+		var shoot_at_conner = randi_range(0,1)
+		if shoot_at_conner == 0: 
+			var hold = bullet.instantiate()
+			hold.set_x_y(position.x, position.y) 
+			get_tree().current_scene.add_child(hold) 
 	else:
 		position.x += movement_amount
 	can_rotate = true
