@@ -8,4 +8,4 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	apply_central_force(Vector2(0, 9.8))
+	apply_central_force(Vector2(0, 9.8))#Make bricks accelerate down at g

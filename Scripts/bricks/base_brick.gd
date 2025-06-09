@@ -32,19 +32,13 @@ func _process(_delta: float) -> void:
 				elif searching_for_floor.search(str(overlapped_area)):
 					falling = false
 			if can_process_collision: collision_behavior.call() # call anaymos func
-			'''if searching_for_bullet.search(str(overlapped_area)) and overlapped_area not in old_bullets:
-				bullet_hits += 1
-				print("a")
-				old_bullets.append(overlapped_area)
-			if bullet_hits > 1:
-				destroy()'''
 
-func shot():
+func shot(): # This is used to kill the briks of they are shot twice and not falling
 	bullet_hits += 1
 	if bullet_hits > 1:
 		destroy()
 
-func refall():
+func refall(): # Recursive call so the bricks fall if supports are broken 
 	for overlapped_area in $RigidBody2D.get_child(2).get_overlapping_areas():
 		if GlobalVariables.SEARCHING_FOR_BRICK.search(str(overlapped_area)):
 			var connected_brick = overlapped_area.get_parent().get_parent() # used to make other bricks fall if one detcts
@@ -52,7 +46,7 @@ func refall():
 				connected_brick.falling = true
 				connected_brick.refall()
 
-func destroy():
+func destroy():# Called when brick is deleted
 	refall()
 	queue_free()
 

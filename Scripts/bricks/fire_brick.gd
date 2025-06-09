@@ -11,6 +11,7 @@ func _process(delta: float) -> void:
 func _ready() -> void:
 	super()
 	type = 'fire'
+	#This is the logic for how the fire brick destroys blocks
 	collision_behavior = func():
 		for overlapped_area in $RigidBody2D.get_child(2).get_overlapping_areas():
 			if GlobalVariables.SEARCHING_FOR_BRICK.search(str(overlapped_area)):
@@ -18,7 +19,5 @@ func _ready() -> void:
 				if overlapped_brick.type == 'sponge':
 					overlapped_brick.decrease_hits()
 					can_process_collision = false
-					await get_tree().create_timer(.5).timeout
-					queue_free()
 				else:
-					overlapped_brick.queue_free()
+					overlapped_brick.destroy()# Changed from queue free as refall needed to be called

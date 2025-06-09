@@ -9,6 +9,7 @@ var existing_enemies = 0
 func _ready() -> void: # Replace with function body.
 	$Hand.game_lost.connect(end) # This connects the signal that is emited to an action, the end function
 	$Label.add_theme_font_size_override("font_size", 19) 
+	print($Label.global_position)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -17,16 +18,18 @@ func _process(delta: float) -> void:
 		dt -= .25
 		existing_enemies += 1 
 		#spawn new enemy
-		var hold = enemy.instantiate()
+		var hold = enemy.instantiate() #Creates new enemy
 		hold.died.connect(update_score)
 		hold.position = Vector2(randi_range(0,440), get_child(2).position.y - hold.get_child(0).get_meta("height", -999))
 		get_tree().current_scene.add_child(hold)
 	if !game:
+		#destroys everything except background and score count
 		for i in get_children():
 			if i != $TextureRect and i != $Label:
 				i.queue_free()
 		$TextureRect.texture = load("res://Sprites/game_over.png")
-		$Label.global_position = Vector2(170, 340)
+		
+		$Label.global_position = Vector2(500/2.0 - ((len("Score: " +str(score)))*15)/2.0, GlobalVariables.SCREEN_HEIGHT/2.0)
 		$Label.add_theme_font_size_override("font_size", 30)
 	
 func update_score(): # https://docs.godotengine.org/en/stable/getting_started/first_2d_game/06.heads_up_display.html
