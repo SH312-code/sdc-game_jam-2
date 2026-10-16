@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://dh25ysbfhbme5"]
+
+[ext_resource type="Script" uid="uid://dmkv6nc1ldism" path="res://Scripts/shooting_enemy.gd" id="1_u560d"]
+[ext_resource type="Texture2D" uid="uid://ccsm62vdc6ccw" path="res://Sprites/mascot.png" id="2_p0kal"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_428wb"]
+size = Vector2(1.2096775, 0.111112)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gxbq7"]
+size = Vector2(75, 100)
+
+[node name="Shooting enemy" type="Node2D"]
+script = ExtResource("1_u560d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(34.000004, 40.28133)
+scale = Vector2(0.08657515, 0.09126172)
+texture = ExtResource("2_p0kal")
+
+[node name="Area2D_for_damage" type="Area2D" parent="."]
+position = Vector2(31, 45)
+scale = Vector2(62, 90)
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_for_damage"]
+position = Vector2(-0.008064598, -0.66666645)
+scale = Vector2(1, 0.9999999)
+shape = SubResource("RectangleShape2D_428wb")
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(30.5, 40)
+shape = SubResource("RectangleShape2D_gxbq7")
